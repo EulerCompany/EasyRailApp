@@ -1,7 +1,6 @@
 package com.entity;
 import com.entity.details.CustomUserDetails;
 import org.hibernate.annotations.Check;
-import org.hibernate.annotations.ColumnDefault;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -9,6 +8,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 
@@ -25,19 +25,42 @@ public class User implements CustomUserDetails {
     @Size(min=2, message = "Не меньше 5 знаков")
     private String password;
 
-
-    @Column(name="fname")
+    @Column(name = "first_name")
     @Size(min=2, message = "Не меньше 5 знаков")
     private String firstname;
+
+    @Column(name = "last_name")
     @Size(min=2, message = "Не меньше 5 знаков")
     private String lastname;
 
-  
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "t_user_role",
+            joinColumns = { @JoinColumn(name = "user_id") },
+            inverseJoinColumns = { @JoinColumn(name = "role_id") }
+    )
+    private Set<Role> roles;
+
+
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "user_id")
+    private List<Ticket> tickets;
 
     @Transient
     private String passwordConfirm;
-    @ManyToMany(fetch = FetchType.EAGER)
-    private Set<Role> roles;
+
+    public List<Ticket> getTickets() {
+        return tickets;
+    }
+
+    public void setTickets(List<Ticket> tickets) {
+        this.tickets = tickets;
+    }
+
+
+
 
     public User() {
     }
