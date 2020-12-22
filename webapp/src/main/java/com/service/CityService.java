@@ -12,12 +12,14 @@ public class CityService {
     private CityRepository cityRepository;
 
 
-    public boolean saveCity(City city) {
-        City cityFromDb = cityRepository.findByName(city.getName());
+    public boolean saveCity(String cityName) {
+        City cityFromDb = cityRepository.findByName(cityName);
 
         if(cityFromDb != null) {
             return false;
         }
+        City city = new City();
+        city.setName(cityName);
         cityRepository.save(city);
         return true;
     }
