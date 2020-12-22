@@ -45,6 +45,11 @@ public class Station {
 
     }
 
+    public Station(String stationName) {
+        this();
+        this.stationName = stationName;
+    }
+
     public String getStationName() {
         return stationName;
     }

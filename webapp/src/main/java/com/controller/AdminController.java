@@ -56,32 +56,20 @@ public class AdminController {
 
         return new ResponseEntity<>("City already in table", HttpStatus.CONFLICT);
     }
+
     @RequestMapping(value = "/admin/addStation", method = RequestMethod.GET)
     @ResponseBody
     public String addStation(@RequestParam String cityName,
                              @RequestParam String stationName) {
 
         City city = cityService.findCityByName(cityName);
-        Station station = new Station();
-        station.setStationName(stationName);
+        Station station = new Station(stationName);
 
-        if(city != null){
-            List<Station> stations = city.getStations();
-
-            if(stations.contains(station)) {
-                return "Station exist";
-            }
-            else {
-                station.setCity(city);
-                stationService.saveStation(station);
-                stations.add(station);
-                city.setStations(stations);
-                cityService.saveCity(city);
-            }
-
+        if(stationService.addStationIfCityExists(city, station)) {
+            cityService.saveCity(city);
             return "Station was added";
         }
-        else {
+        else{
             cityService.saveCity(cityName);
             station.setCity(cityService.findCityByName(cityName));
             stationService.saveStation(station);
