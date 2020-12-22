@@ -22,11 +22,11 @@ public class Route {
     @Column(name = "description")
     private String description;
 
-   @OneToMany(
-           mappedBy = "route",
-           cascade = CascadeType.ALL,
-           orphanRemoval = true
-   )
+    @OneToMany(
+            mappedBy = "route",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
     private List<RouteStation> stations = new ArrayList<>();
 
     @Override

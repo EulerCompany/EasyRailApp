@@ -16,6 +16,7 @@
       <input name="first_name" type="text" placeholder="CityName"
              autofocus="true"/>
       <input name="second_name" type="text" placeholder="SecondCityName"/>
+       <input name="date" type="date" path = "date" placeholder="Date"/>
       <button type="submit">Log In</button>
 
       <h4><a href="/registration">Зарегистрироваться</a></h4>

@@ -1,6 +1,9 @@
 package com.entity;
 
+import org.hibernate.validator.constraints.br.CPF;
+
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -13,6 +16,12 @@ public class Train {
 
     @Column(name = "train_name")
     private String trainName;
+
+    @Column(name = "departure_time")
+    private Date departureTime;
+
+    @Column(name = "arrival_time")
+    private Date arrivalTime;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "train_id")
@@ -42,5 +51,19 @@ public class Train {
         this.tickets = tickets;
     }
 
+    public Date getDepartureTime() {
+        return departureTime;
+    }
 
+    public void setDepartureTime(Date departureTime) {
+        this.departureTime = departureTime;
+    }
+
+    public Date getArrivalTime() {
+        return arrivalTime;
+    }
+
+    public void setArrivalTime(Date arrivalTime) {
+        this.arrivalTime = arrivalTime;
+    }
 }

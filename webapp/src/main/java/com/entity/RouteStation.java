@@ -20,6 +20,8 @@ public class RouteStation {
     @Column(name = "order_station")
     private Long order;
 
+
+
     public RouteStation() {}
 
     public RouteStation(Route route, Station station) {

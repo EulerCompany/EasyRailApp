@@ -12,6 +12,11 @@ public class Ticket {
     @Column(name = "ticket_class")
     private String ticketClass;
 
+    @Column(name = "price")
+    private Double price;
+
+
+
     public Long getId() {
         return id;
     }
@@ -36,6 +41,4 @@ public class Ticket {
         this.price = price;
     }
 
-    @Column(name = "price")
-    private Double price;
 }
