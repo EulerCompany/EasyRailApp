@@ -23,6 +23,24 @@ public class Station {
     )
     private List<RouteStation> routes = new ArrayList<>();
 
+    @ManyToOne(
+            fetch = FetchType.LAZY,
+            optional = false
+    )
+    @JoinColumn(
+            name = "city_id",
+            nullable = false
+    )
+    private City city;
+
+    public City getCity() {
+        return city;
+    }
+
+    public void setCity(City city) {
+        this.city = city;
+    }
+
     public Station() {
 
     }
@@ -48,13 +66,19 @@ public class Station {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Station station = (Station) o;
-        return Objects.equals(id, station.id) &&
-                Objects.equals(stationName, station.stationName) &&
-                Objects.equals(routes, station.routes);
+        return Objects.equals(stationName, station.stationName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, stationName, routes);
+        return Objects.hash(stationName);
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

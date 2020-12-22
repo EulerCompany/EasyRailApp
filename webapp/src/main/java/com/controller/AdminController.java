@@ -3,6 +3,7 @@ package com.controller;
 import com.entity.City;
 import com.entity.Station;
 import com.service.CityService;
+import com.service.StationService;
 import com.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,6 +22,8 @@ public class AdminController {
     @Autowired
     private CityService cityService;
 
+    @Autowired
+    private StationService stationService;
 
     @GetMapping("/admin")
     public String userList(Model model) {
@@ -52,5 +55,38 @@ public class AdminController {
         }
 
         return new ResponseEntity<>("City already in table", HttpStatus.CONFLICT);
+    }
+    @RequestMapping(value = "/admin/addStation", method = RequestMethod.GET)
+    @ResponseBody
+    public String addStation(@RequestParam String cityName,
+                             @RequestParam String stationName) {
+
+        City city = cityService.findCityByName(cityName);
+        Station station = new Station();
+        station.setStationName(stationName);
+
+        if(city != null){
+            List<Station> stations = city.getStations();
+
+            if(stations.contains(station)) {
+                return "Station exist";
+            }
+            else {
+                station.setCity(city);
+                stationService.saveStation(station);
+                stations.add(station);
+                city.setStations(stations);
+                cityService.saveCity(city);
+            }
+
+            return "Station was added";
+        }
+        else {
+            cityService.saveCity(cityName);
+            station.setCity(cityService.findCityByName(cityName));
+            stationService.saveStation(station);
+            return "City and station was added";
+        }
+
     }
 }
