@@ -24,9 +24,18 @@ public class RouteStation {
 
     public RouteStation() {}
 
+    public Long getOrder() {
+        return order;
+    }
+
+    public void setOrder(Long order) {
+        this.order = order;
+    }
+
     public RouteStation(Route route, Station station) {
         this.route = route;
         this.station = station;
+        this.id = new RouteStationId(route.getId(), station.getId());
     }
 
 }

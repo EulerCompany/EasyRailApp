@@ -15,7 +15,23 @@ public class Ticket {
     @Column(name = "price")
     private Double price;
 
+    @ManyToOne(
+            fetch = FetchType.LAZY,
+            optional = false
+    )
+    @JoinColumn(
+            name = "train_id",
+            nullable = false
+    )
+    private Train train;
 
+    public Train getTrain() {
+        return train;
+    }
+
+    public void setTrain(Train train) {
+        this.train = train;
+    }
 
     public Long getId() {
         return id;

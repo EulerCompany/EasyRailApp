@@ -5,6 +5,7 @@ import org.hibernate.validator.constraints.br.CPF;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "t_train")
@@ -26,6 +27,28 @@ public class Train {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "train_id")
     private List<Ticket> tickets;
+
+    @ManyToOne(
+            fetch = FetchType.LAZY,
+            optional = false
+    )
+    @JoinColumn(
+            name = "route_id",
+            nullable = false
+    )
+    private Route route;
+
+
+
+    public Train() {
+
+    }
+
+    public Train(String trainName, Date departureTime, Date arrivalTime){
+        this.trainName = trainName;
+        this.departureTime = departureTime;
+        this.arrivalTime = arrivalTime;
+    }
 
     public Long getId() {
         return id;

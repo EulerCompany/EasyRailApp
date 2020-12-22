@@ -2,9 +2,7 @@ package com.controller;
 
 import com.entity.City;
 import com.entity.Station;
-import com.service.CityService;
-import com.service.StationService;
-import com.service.UserService;
+import com.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
 import java.util.List;
 
 @Controller
@@ -24,6 +23,12 @@ public class AdminController {
 
     @Autowired
     private StationService stationService;
+
+    @Autowired
+    private TrainService trainService;
+
+    @Autowired
+    private DateFormatterService dateFormatterService;
 
     @GetMapping("/admin")
     public String userList(Model model) {
@@ -75,6 +80,26 @@ public class AdminController {
             stationService.saveStation(station);
             return "City and station was added";
         }
-
     }
+
+    @RequestMapping(value = "/admin/addTrain", method = RequestMethod.GET)
+    @ResponseBody
+    public String addTrain(@RequestParam String trainName,
+                           @RequestParam("a") String arrivalTime,
+                           @RequestParam("d") String departureTime) {
+
+        try {
+            trainService.saveTrain(trainName,
+                    dateFormatterService.dateFromString(departureTime),
+                    dateFormatterService.dateFromString(arrivalTime));
+
+        }
+        catch (ParseException pe) {
+            pe.printStackTrace();
+        }
+
+
+        return "";
+    }
+
 }

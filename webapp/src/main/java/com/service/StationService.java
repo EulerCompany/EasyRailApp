@@ -46,6 +46,8 @@ public class StationService {
         return false;
     }
 
-
+    public Station findStationByCityId(City city) {
+        return stationRepository.findByCityId(city.getId());
+    }
 
 }
