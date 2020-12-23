@@ -20,13 +20,41 @@ public class RouteStation {
     @Column(name = "order_station")
     private Long order;
 
+    public Route getRoute() {
+        return route;
+    }
 
+    public void setRoute(Route route) {
+        this.route = route;
+    }
+
+    public Station getStation() {
+        return station;
+    }
+
+    public void setStation(Station station) {
+        this.station = station;
+    }
 
     public RouteStation() {}
+
+    public Long getOrder() {
+        return order;
+    }
+
+    public void setOrder(Long order) {
+        this.order = order;
+    }
 
     public RouteStation(Route route, Station station) {
         this.route = route;
         this.station = station;
+        this.id = new RouteStationId(route.getId(), station.getId());
+    }
+
+    public RouteStation(Route route, Station station, Long order) {
+        this(route, station);
+        this.order = order;
     }
 
 }

@@ -1,10 +1,7 @@
 package com.controller;
 
-import com.entity.City;
-import com.entity.Station;
-import com.service.CityService;
-import com.service.StationService;
-import com.service.UserService;
+import com.entity.*;
+import com.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
 import java.util.List;
 
 @Controller
@@ -24,6 +22,17 @@ public class AdminController {
 
     @Autowired
     private StationService stationService;
+
+    @Autowired
+    private TrainService trainService;
+
+    @Autowired
+    private TicketService ticketService;
+
+    @Autowired
+    private DateFormatterService dateFormatterService;
+
+    @Autowired SeedingService seedingService;
 
     @GetMapping("/admin")
     public String userList(Model model) {
@@ -75,6 +84,54 @@ public class AdminController {
             stationService.saveStation(station);
             return "City and station was added";
         }
+    }
 
+    @RequestMapping(value = "/admin/addTrain", method = RequestMethod.GET)
+    @ResponseBody
+    public String addTrain(@RequestParam String trainName,
+                           @RequestParam("a") String arrivalTime,
+                           @RequestParam("d") String departureTime) {
+
+        try {
+            trainService.saveTrain(trainName,
+                    dateFormatterService.dateFromString(departureTime),
+                    dateFormatterService.dateFromString(arrivalTime));
+        }
+        catch (ParseException pe) {
+            pe.printStackTrace();
+        }
+        return "";
+    }
+
+    @RequestMapping(value = "/admin/addTicket", method = RequestMethod.GET)
+    @ResponseBody
+    public String addTicket(@RequestParam Double price,
+                            @RequestParam String ticketClass,
+                            @RequestParam(defaultValue = "Service") String username,
+                            @RequestParam String trainName) {
+
+        Ticket ticket = new Ticket();
+        ticket.setPrice(price);
+        ticket.setTicketClass(ticketClass);
+        User service = userService.findUserByName(username);
+        ticket.setUser(service);
+        Train train = trainService.findByTrainName(trainName);
+
+        if(train != null) {
+            ticket.setTrain(train);
+            ticketService.saveTicket(ticket);
+            return "Ticket added";
+        }
+        else {
+            return "Train doesn't exist";
+        }
+
+    }
+
+    @GetMapping("/admin/seed")
+    public String seed() {
+
+        seedingService.seed();
+        return "index";
     }
 }

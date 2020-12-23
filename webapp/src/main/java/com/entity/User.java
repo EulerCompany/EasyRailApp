@@ -44,6 +44,7 @@ public class User implements CustomUserDetails {
 
 
 
+    @Transient
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "user_id")
     private List<Ticket> tickets;
@@ -63,6 +64,13 @@ public class User implements CustomUserDetails {
 
 
     public User() {
+    }
+
+    public User(String username, String firstname, String lastname, String password){
+        this.username = username;
+        this.firstname =firstname;
+        this.lastname = lastname;
+        this.password = password;
     }
 
     public Long getId() {

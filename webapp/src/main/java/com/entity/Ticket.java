@@ -15,7 +15,44 @@ public class Ticket {
     @Column(name = "price")
     private Double price;
 
+    @Column(name = "booked")
+    private Boolean booked;
 
+    @ManyToOne(
+            fetch = FetchType.EAGER,
+            optional = false
+    )
+    @JoinColumn(
+            name = "train_id",
+            nullable = false
+    )
+    private Train train;
+
+    @ManyToOne(
+            fetch = FetchType.EAGER,
+            optional = false
+    )
+    @JoinColumn(
+            name = "user_id",
+            nullable = false
+    )
+    private User user;
+
+    public Boolean getBooked() {
+        return booked;
+    }
+
+    public void setBooked(Boolean booked) {
+        this.booked = booked;
+    }
+
+    public Train getTrain() {
+        return train;
+    }
+
+    public void setTrain(Train train) {
+        this.train = train;
+    }
 
     public Long getId() {
         return id;
@@ -41,4 +78,11 @@ public class Ticket {
         this.price = price;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

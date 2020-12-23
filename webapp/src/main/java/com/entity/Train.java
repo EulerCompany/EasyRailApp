@@ -3,8 +3,12 @@ package com.entity;
 import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.*;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "t_train")
@@ -26,6 +30,35 @@ public class Train {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "train_id")
     private List<Ticket> tickets;
+
+    @ManyToOne(
+            fetch = FetchType.LAZY,
+            optional = false
+    )
+    @JoinColumn(
+            name = "route_id",
+            nullable = false
+    )
+    private Route route;
+
+
+    public Train() {
+
+    }
+
+    public Train(String trainName, Date departureTime, Date arrivalTime){
+        this.trainName = trainName;
+        this.departureTime = departureTime;
+        this.arrivalTime = arrivalTime;
+    }
+
+    public Route getRoute() {
+        return route;
+    }
+
+    public void setRoute(Route route) {
+        this.route = route;
+    }
 
     public Long getId() {
         return id;
@@ -53,6 +86,14 @@ public class Train {
 
     public Date getDepartureTime() {
         return departureTime;
+    }
+
+    public Date getDepartureDate() throws ParseException {
+        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+
+        Date departureDate = departureTime;
+
+        return formatter.parse(formatter.format(departureDate));
     }
 
     public void setDepartureTime(Date departureTime) {

@@ -26,6 +26,22 @@ public class RouteStationId implements Serializable{
         this.stationId = stationId;
     }
 
+    public Long getRouteId() {
+        return routeId;
+    }
+
+    public void setRouteId(Long routeId) {
+        this.routeId = routeId;
+    }
+
+    public Long getStationId() {
+        return stationId;
+    }
+
+    public void setStationId(Long stationId) {
+        this.stationId = stationId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

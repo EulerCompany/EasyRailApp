@@ -5,6 +5,7 @@ import com.repository.CityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -20,8 +21,7 @@ public class CityService {
         if(cityFromDb != null) {
             return false;
         }
-        City city = new City();
-        city.setName(cityName);
+        City city = new City(cityName);
         cityRepository.save(city);
         return true;
     }
@@ -36,6 +36,10 @@ public class CityService {
 
     public City findCityByName(String name) {
         return cityRepository.findByName(name);
+    }
+
+    List<City> findAll() {
+        return cityRepository.findAll();
     }
 
 }

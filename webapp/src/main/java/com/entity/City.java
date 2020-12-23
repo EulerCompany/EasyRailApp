@@ -14,10 +14,26 @@ public class City {
     @Column(name = "name")
     private String name;
 
+    @Transient
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "city_id")
     private List<Station> stations;
 
+    public City() {
+
+    }
+
+    public City(String name) {
+        this();
+        this.name =name;
+    }
+
+    public Station getFirstStation() {
+        return stations.get(0);
+    }
+    public void setFirstStation(Station station) {
+        stations.add(0, station);
+    }
     public Long getId() {
         return id;
     }
