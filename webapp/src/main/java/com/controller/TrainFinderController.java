@@ -4,6 +4,7 @@ import com.entity.*;
 import com.repository.RouteRepository;
 import com.repository.RouteStationRepository;
 import com.repository.StationRepository;
+import com.repository.TrainRepository;
 import com.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -30,10 +32,13 @@ public class TrainFinderController {
 
     @Autowired
     private RouteStationRepository routeStationRepository;
-    @Autowired
-    private RouteRepository routeRepository;
+
+
     @Autowired
     private StationRepository stationRepository;
+
+    @Autowired
+    private TrainRepository trainRepository;
 
     @GetMapping("/search")
     public String search(Model model) {
@@ -70,46 +75,36 @@ public class TrainFinderController {
             return "No rides available";
         }
 
-        List<Station> firstCityStations = firstCity.getStations();
-        List<Station> lastCityStations = lastCity.getStations();
-        for(Station st : firstCityStations) {
-            System.out.println(st.getStationName());
+
+
+        Station firstCityStations = firstCity.getFirstStation();
+        Station lastCityStations = lastCity.getFirstStation();
+
+
+        System.out.println(firstCityStations.getStationName());
+        System.out.println(lastCityStations.getStationName());
+
+
+        List<RouteStation> rt1 = routeStationRepository.findByStationId(firstCityStations.getId());
+        List<RouteStation> rt2 = routeStationRepository.findByStationId(lastCityStations.getId());
+
+        List<Long> routeIds = new ArrayList<>();
+
+
+        for(RouteStation t : rt1) {
+            for(RouteStation tt : rt2){
+                if(t.getRoute().getId() == tt.getRoute().getId() && t.getOrder()  < tt.getOrder()) {
+                    routeIds.add(t.getRoute().getId());
+                }
+            }
         }
-        System.out.println("after list station");
 
-        Station fstation = firstCityStations.get(0);
-        Station lstation = lastCityStations.get(0);
-
-
-        System.out.println("after station");
+        for(Long l : routeIds) {
+            Train train = trainRepository.getTrainByRouteId(l);
+            System.out.println(train.getTrainName());
+        }
 
 
-
-        List<RouteStation> rt = routeStationRepository.findAll();
-
-        RouteStation rtt = routeStationRepository.findByStationId(1L);
-        Station stt = rtt.getStation();
-        System.out.println(stt.getStationName());
-//        Route lroute = lstation.getRoutes().get(0).getRoute();
-
-//
-//        if(froute.getId().equals(lroute.getId())){
-//            System.out.println("YES");
-//        }
-//        else {
-//        }
-
-//        for(Station fstation: firstCityStations) {
-//
-//            for (Station lstation: lastCityStations) {
-//
-//            }
-//        }
-
-
-
-
-//        List<Train> trains = trainFinderService.searchForTrains(firstCity, lastCity, departureDate);
 
 
 

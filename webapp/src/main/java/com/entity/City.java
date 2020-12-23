@@ -18,6 +18,12 @@ public class City {
     @JoinColumn(name = "city_id")
     private List<Station> stations;
 
+    public Station getFirstStation() {
+        return stations.get(0);
+    }
+    public void setFirstStation(Station station) {
+        stations.add(0, station);
+    }
     public Long getId() {
         return id;
     }
