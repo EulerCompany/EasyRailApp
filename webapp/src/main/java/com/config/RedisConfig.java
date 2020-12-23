@@ -1,8 +1,8 @@
 package com.config;
 
-import com.entity.RedisMessageSubscriber;
 import com.queue.MessagePublisher;
 import com.queue.RedisMessagePublisher;
+import com.queue.RedisMessageSubscriber;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;

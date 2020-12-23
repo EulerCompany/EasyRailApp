@@ -97,7 +97,6 @@
             <groupId>redis.clients</groupId>
             <artifactId>jedis</artifactId>
             <type>jar</type>
-            <version>3.4.0</version>
         </dependency>
 
 

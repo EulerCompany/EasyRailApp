@@ -6,6 +6,9 @@ import java.io.Serializable;
 
 @RedisHash("Ticket")
 public class TicketRedis implements Serializable {
-        private Long ticketId;
-        private Long userdId;
+
+
+        private String id;
+        private String name;
+        private int grade;
 }
