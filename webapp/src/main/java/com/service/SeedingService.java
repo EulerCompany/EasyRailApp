@@ -105,6 +105,7 @@ public class SeedingService {
                 Ticket ticket = new Ticket();
                 ticket.setPrice(200.0 + i * 30);
                 ticket.setTicketClass("premium");
+                ticket.setBooked(false);
                 train = trainService.findByTrainName(trainName);
                 ticket.setTrain(train);
                 User service = userService.findUserByName("Service");

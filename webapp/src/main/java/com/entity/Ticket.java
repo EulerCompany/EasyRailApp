@@ -15,6 +15,9 @@ public class Ticket {
     @Column(name = "price")
     private Double price;
 
+    @Column(name = "booked")
+    private Boolean booked;
+
     @ManyToOne(
             fetch = FetchType.EAGER,
             optional = false
@@ -34,6 +37,14 @@ public class Ticket {
             nullable = false
     )
     private User user;
+
+    public Boolean getBooked() {
+        return booked;
+    }
+
+    public void setBooked(Boolean booked) {
+        this.booked = booked;
+    }
 
     public Train getTrain() {
         return train;
