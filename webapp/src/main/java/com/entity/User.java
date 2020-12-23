@@ -44,6 +44,7 @@ public class User implements CustomUserDetails {
 
 
 
+
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "user_id")
     private List<Ticket> tickets;

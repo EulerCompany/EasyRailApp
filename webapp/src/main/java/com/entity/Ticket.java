@@ -25,6 +25,16 @@ public class Ticket {
     )
     private Train train;
 
+    @ManyToOne(
+            fetch = FetchType.LAZY,
+            optional = false
+    )
+    @JoinColumn(
+            name = "user_id",
+            nullable = false
+    )
+    private User user;
+
     public Train getTrain() {
         return train;
     }
