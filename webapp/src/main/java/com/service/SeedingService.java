@@ -36,9 +36,9 @@ public class SeedingService {
         seedCities();
         seedRoutes();
         seedTrains();
-
     }
-    private void seedRoutes() {
+
+    public void seedRoutes() {
         List<String> firstRouteList = Arrays.asList("Львів", "Житомир","Біла Церква", "Київ", "Кременчук", "Дніпро", "Харків", "Маріуполь");
         List<String> secondRouteList = new ArrayList<>(firstRouteList);
         Collections.reverse(secondRouteList);
@@ -78,7 +78,7 @@ public class SeedingService {
         }
     }
 
-    private void seedTrains() {
+    public void seedTrains() {
         Route route = routeService.findRouteByDescription("Route 1");
         Train train = new Train();
         List<String> departureDates = Arrays.asList("2020-11-01");
@@ -104,7 +104,7 @@ public class SeedingService {
         stationService.addStationIfCityExists(city,station);
     }
 
-    private void seedCities() {
+    public void seedCities() {
         List<String> cities = Arrays.asList("Маріуполь", "Біла Церква", "Київ", "Кременчук", "Львів", "Житомир", "Харків", "Дніпро");
         for(String city: cities) {
             cityService.saveCity(city);
@@ -112,7 +112,7 @@ public class SeedingService {
         }
     }
 
-    private void seedUsers() {
+    public void seedUsers() {
         List<String> usernames = Arrays.asList("Wozzya", "HauntTheHouse", "lammaxcool", "ayy_lma0");
         List<String> password = Arrays.asList("pass", "pass" , "pass", "pass");
         List<String> firstName = Arrays.asList("Vladyslav", "Roman", "Max", "Daria");

@@ -16,7 +16,7 @@ public class Ticket {
     private Double price;
 
     @ManyToOne(
-            fetch = FetchType.LAZY,
+            fetch = FetchType.EAGER,
             optional = false
     )
     @JoinColumn(
@@ -26,7 +26,7 @@ public class Ticket {
     private Train train;
 
     @ManyToOne(
-            fetch = FetchType.LAZY,
+            fetch = FetchType.EAGER,
             optional = false
     )
     @JoinColumn(

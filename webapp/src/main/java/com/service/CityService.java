@@ -21,8 +21,7 @@ public class CityService {
         if(cityFromDb != null) {
             return false;
         }
-        City city = new City();
-        city.setName(cityName);
+        City city = new City(cityName);
         cityRepository.save(city);
         return true;
     }

@@ -125,7 +125,7 @@ public class AdminController {
 
     }
 
-    @GetMapping("/seed")
+    @GetMapping("/admin/seed")
     public String seed() {
 
         seedingService.seed();
