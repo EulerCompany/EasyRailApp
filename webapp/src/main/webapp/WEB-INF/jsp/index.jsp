@@ -2,26 +2,177 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
+
 <head>
-  <title>Главная</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/style.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>EasyRail — головна</title>
+    <link rel="stylesheet" href="${contextPath}/resources/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${contextPath}/resources/fonts/ionicons.min.css">
+    <link rel="stylesheet" href="${contextPath}resources/css/main_page.css">
 </head>
-<body>
-<div>
-  <h3>${pageContext.request.userPrincipal.name}</h3>
-  <h3>${pageContext.request.userPrincipal.name}</h3>    
-  <sec:authorize access="!isAuthenticated()">
-    <h4><a href="/login">Войти</a></h4>
-    <h4><a href="/registration">Зарегистрироваться</a></h4>
-  </sec:authorize>
-  <sec:authorize access="isAuthenticated()">
-    <h4><a href="/logout">Выйти</a></h4>
-  </sec:authorize>
-  <h4><a href="/news">Новости (только пользователь)</a></h4>
-  <h4><a href="/admin">Пользователи (только админ)</a></h4>
-</div>
+
+<body class="text-dark">
+  <!-- header -->
+  <header>
+    <nav class="navbar navbar-dark navbar-expand-md fixed-top">
+      <div class="container-fluid"><a class="navbar-brand" href="#"><img class="train-logo" src="${contextPath}/resources/img/train.png" width="55" height="55">
+        <span style="font-size:25px">EasyRail</span>
+      </a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+          <div class="collapse navbar-collapse justify-content-end" id="navcol-1">
+              <ul class="nav navbar-nav">
+                <li class="nav-item" role="presentation"><a class="nav-link" href="/">Замовити квитки</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" href="#">Контакти</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" href="/login">Увійти</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" href="#"><i class="icon ion-android-cart"></i></a></li>
+              </ul>
+          </div>
+      </div>
+    </nav>
+  </header>
+  <!-- main -->
+  <main>
+    <!-- main baner -->
+    <div class="train-primary container-fluid">
+      <img class="img-fluid" src="${contextPath}/resources/img/background_train.png">
+      <div class="greeting">Мандруй швидко та зручно разом з нами!</div>
+      <div class="arrow-down"><a href="#"><img class="arr-d" src="${contextPath}/resources/img/arrows.png" width="100" height="100"></a></div>
+    </div>
+    <!-- search inputs -->
+    <div class="search-wrapper containter-fluid">
+      <div class="col-1">
+        <!-- none -->
+      </div>
+      <div class="search-background col-10">
+        <div class="container-fluid">
+          <!-- popular routes -->
+          <div class="row">
+            <p class="popular-routes">Популярні напрямки</p>
+          </div>
+          <!--начинаю делать хуйню-->
+            <div class="row d-flex justify-content-between">
+              <div class="col-1">
+                <!-- none -->
+              </div>
+              <div class="route d-flex justify-content-center">
+                <p class="from">Київ</p>
+                <img src="${contextPath}/resources/img/double-arrow.png" alt="double-arrow">
+                <p class="to">Харків</p>
+              </div>
+              <div class="route d-flex justify-content-center">
+                <p class="from">Київ</p>
+                <img src="${contextPath}/resources/img/double-arrow.png" alt="double-arrow">
+                <p class="to">Львів</p>
+              </div>
+              <div class="route d-flex justify-content-center">
+                <p class="from">Київ</p>
+                <img src="${contextPath}/resources/img/double-arrow.png" alt="double-arrow">
+                <p class="to">Дніпро-Головний</p>
+              </div>
+              <div class="route d-flex justify-content-center">
+                <p class="from">Київ</p>
+                <img src="${contextPath}/resources/img/double-arrow.png" alt="double-arrow">
+                <p class="to">Одеса</p>
+              </div>
+              <div class="col-1">
+                <!-- none -->
+              </div>
+            </div>
+          <!--заканчиваю делать []уйню-->
+          <!-- input form -->
+          <div class="input-wrapper container-fluid">
+            <div class="row">
+              <div class="col-1">
+                <!-- none -->
+              </div>
+              <!-- input form -->
+              <div class="col-10">
+                <form class="form-horizontal d-flex justify-content-center" role="form">
+                    <!-- from -->
+                  <div class="left col-6">
+                    <div class="form-group">
+                      <label class="control-label" for="from" >Звідки</label>
+                      <input type="from" id="from-date" class="form-control">
+                    </div>
+                  </div>
+                  <!-- to -->
+                  <div class="right col-6">
+                    <div class="form-group">
+                      <label class="control-label" for="to" >Куди</label>
+                      <input type="from" id="to-date" class="form-control">
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div class="col-1">
+                <!-- none -->
+              </div>
+            </div>
+            <!-- calendar form -->
+            <div class="row">
+              <div class="col-1">
+                <!-- none -->
+              </div>
+              <div class="butt-form col-10">
+                <form class="form-horizontal d-flex justify-content-left">
+                  <div class="col-5">
+                    <div class="form-group">
+                      <label for="date">Час відправлення</label>
+                      <input type="date" id="calendar" class="form-control">
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div class="col-1">
+                <!-- none -->
+              </div>
+            </div>
+            <!-- search button -->
+            <div class="row">
+              <div class="search-butt btn-group" data-toggle="buttons">
+                <button class="btn search-butt">Пошук потягів</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-1">
+        <!-- none -->
+      </div>
+    </div>
+  </main>
+
+  <footer>
+   <div class="container-fluid">
+      <nav class="navbar navbar-dark navbar-expand-md">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">
+            <span style="font-size:25px">EasyRail</span>
+            <img class="train-logo" src="${contextPath}/resources/img/train.png" width="55" height="55">
+          </a>
+          <button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"></button>
+          <div class="collapse navbar-collapse justify-content-end" id="navcol-1">
+            <ul class="nav navbar-nav">
+              <li class="nav-item" role="presentation"><a class="nav-link" href="#">Про нас</a></li>
+              <li class="nav-item" role="presentation"><a class="nav-link" href="#">Замовити квитки</a></li>
+              <li class="nav-item" role="presentation"><a class="nav-link" href="#">Задати питання</a></li>
+              <li class="nav-item" role="presentation"><a class="nav-link" href="#">Повернення квитків</a></li>
+              <li class="nav-item" role="presentation"><a class="nav-link" href="#">Робота з нами</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <!-- Copyright -->
+    <div class="text-center footer-copyright">
+      Copyright ©EasyRail. All rights reserved.
+    </div>
+    <!-- Copyright -->
+  </footer>
+
+  <script src="${contextPath}/resources/js/main_page.js"></script>
 </body>
+
 </html>
