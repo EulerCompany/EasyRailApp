@@ -107,12 +107,15 @@ public class AdminController {
     @ResponseBody
     public String addTicket(@RequestParam Double price,
                             @RequestParam String ticketClass,
-                            @RequestParam String trainname) {
+                            @RequestParam(defaultValue = "Service") String username,
+                            @RequestParam String trainName) {
 
         Ticket ticket = new Ticket();
         ticket.setPrice(price);
         ticket.setTicketClass(ticketClass);
-        Train train = trainService.findByTrainName(trainname);
+        User service = userService.findUserByName(username);
+        ticket.setUser(service);
+        Train train = trainService.findByTrainName(trainName);
 
         if(train != null) {
             ticket.setTrain(train);

@@ -31,14 +31,17 @@ public class SeedingService {
     @Autowired
     private TrainService trainService;
 
+    @Autowired
+    private TicketService ticketService;
+
     public void seed() {
         seedUsers();
         seedCities();
         seedRoutes();
-        seedTrains();
-    }
+        seedTrainsAndTickets();
 
-    public void seedRoutes() {
+    }
+    private void seedRoutes() {
         List<String> firstRouteList = Arrays.asList("Львів", "Житомир","Біла Церква", "Київ", "Кременчук", "Дніпро", "Харків", "Маріуполь");
         List<String> secondRouteList = new ArrayList<>(firstRouteList);
         Collections.reverse(secondRouteList);
@@ -78,24 +81,40 @@ public class SeedingService {
         }
     }
 
-    public void seedTrains() {
-        Route route = routeService.findRouteByDescription("Route 1");
+    private void seedTrainsAndTickets() {
+
+        addTrainAndTickets("2020-11-01", "2020-11-02", "Route 1", "T1");
+        addTrainAndTickets("2020-11-01", "2020-11-02", "Route 2", "T2");
+        addTrainAndTickets("2020-11-01", "2020-11-02", "Route 3", "T3");
+    }
+    private void addTrainAndTickets(String departureDate, String arrivalDate, String description, String trainName) {
+        Route route = routeService.findRouteByDescription(description);
         Train train = new Train();
-        List<String> departureDates = Arrays.asList("2020-11-01");
-        List<String> arrivalDates = Arrays.asList("2020-11-02");
 
         try{
-            Date depDate = dateFormatterService.dateFromString(departureDates.get(0));
-            Date arDate = dateFormatterService.dateFromString(arrivalDates.get(0));
+            Date depDate = dateFormatterService.dateFromString(departureDate);
+            Date arDate = dateFormatterService.dateFromString(arrivalDate);
 
             train.setArrivalTime(arDate);
             train.setDepartureTime(depDate);
-            train.setTrainName("T1");
+            train.setTrainName(trainName);
             train.setRoute(route);
             trainService.saveTrain(train);
+
+            for(int i = 0; i < 10; ++i) {
+                Ticket ticket = new Ticket();
+                ticket.setPrice(200.0 + i * 30);
+                ticket.setTicketClass("premium");
+                train = trainService.findByTrainName(trainName);
+                ticket.setTrain(train);
+                User service = userService.findUserByName("Service");
+                ticket.setUser(service);
+                ticketService.saveTicket(ticket);
+            }
         }catch (ParseException pe) {
             pe.printStackTrace();
         }
+
     }
 
     private void seedStation(String cityName){
@@ -104,19 +123,19 @@ public class SeedingService {
         stationService.addStationIfCityExists(city,station);
     }
 
-    public void seedCities() {
+    private void seedCities() {
         List<String> cities = Arrays.asList("Маріуполь", "Біла Церква", "Київ", "Кременчук", "Львів", "Житомир", "Харків", "Дніпро");
-        for(String city: cities) {
+        for(String city : cities) {
             cityService.saveCity(city);
             seedStation(city);
         }
     }
 
-    public void seedUsers() {
-        List<String> usernames = Arrays.asList("Wozzya", "HauntTheHouse", "lammaxcool", "ayy_lma0");
-        List<String> password = Arrays.asList("pass", "pass" , "pass", "pass");
-        List<String> firstName = Arrays.asList("Vladyslav", "Roman", "Max", "Daria");
-        List<String> lastName = Arrays.asList("Chaykovsky", "Durda", "Haponuk", "Kharitonova");
+    private void seedUsers() {
+        List<String> usernames = Arrays.asList("Wozzya", "HauntTheHouse", "lammaxcool", "ayy_lma0","Service");
+        List<String> password = Arrays.asList("pass", "pass" , "pass", "pass", "pass");
+        List<String> firstName = Arrays.asList("Vladyslav", "Roman", "Max", "Daria", "Ser");
+        List<String> lastName = Arrays.asList("Chaykovsky", "Durda", "Haponuk", "Kharitonova", "Vice");
 
         for(int i = 0; i <usernames.size(); ++i) {
             User user = new User(usernames.get(i),
