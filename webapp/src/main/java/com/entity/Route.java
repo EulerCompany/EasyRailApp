@@ -30,9 +30,17 @@ public class Route {
     )
     private List<RouteStation> stations = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "route_id")
-    private List<Train> trains;
+//    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+//    @JoinColumn(name = "route_id")
+//    private List<Train> trains;
+
+    @OneToMany(
+            mappedBy = "route",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<TrainRoute> trains = new ArrayList<>();
+
 
     public Long getId() {
         return id;
@@ -74,6 +82,14 @@ public class Route {
         this.stations = stations;
     }
 
+    public List<TrainRoute> getTrains() {
+        return trains;
+    }
+
+    public void setTrains(List<TrainRoute> trains) {
+        this.trains = trains;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -83,11 +99,12 @@ public class Route {
                 Objects.equals(firstStation, route.firstStation) &&
                 Objects.equals(lastStation, route.lastStation) &&
                 Objects.equals(description, route.description) &&
-                Objects.equals(stations, route.stations);
+                Objects.equals(stations, route.stations) &&
+                Objects.equals(trains, route.trains);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstStation, lastStation, description, stations);
+        return Objects.hash(id, firstStation, lastStation, description, stations, trains);
     }
 }

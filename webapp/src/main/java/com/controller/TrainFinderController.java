@@ -1,7 +1,6 @@
 package com.controller;
 
 import com.entity.*;
-import com.repository.RouteRepository;
 import com.repository.RouteStationRepository;
 import com.repository.StationRepository;
 import com.repository.TrainRepository;
@@ -11,12 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class TrainFinderController {
@@ -92,7 +87,7 @@ public class TrainFinderController {
 
 
         for(RouteStation t : rt1) {
-            for(RouteStation tt : rt2){
+            for( RouteStation tt : rt2){
                 if(t.getRoute().getId() == tt.getRoute().getId() && t.getOrder()  < tt.getOrder()) {
                     routeIds.add(t.getRoute().getId());
                 }

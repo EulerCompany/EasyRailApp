@@ -3,9 +3,7 @@ package com.entity;
 import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "t_train")
@@ -28,15 +26,22 @@ public class Train {
     @JoinColumn(name = "train_id")
     private List<Ticket> tickets;
 
-    @ManyToOne(
-            fetch = FetchType.LAZY,
-            optional = false
+//    @ManyToOne(
+//            fetch = FetchType.LAZY,
+//            optional = false
+//    )
+//    @JoinColumn(
+//            name = "route_id",
+//            nullable = false
+//    )
+//    private Route route;
+
+    @OneToMany(
+            mappedBy = "routes",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
     )
-    @JoinColumn(
-            name = "route_id",
-            nullable = false
-    )
-    private Route route;
+    private List<TrainRoute> routes = new ArrayList<>();
 
 
 
@@ -66,14 +71,6 @@ public class Train {
         this.trainName = trainName;
     }
 
-    public List<Ticket> getTickets() {
-        return tickets;
-    }
-
-    public void setTickets(List<Ticket> tickets) {
-        this.tickets = tickets;
-    }
-
     public Date getDepartureTime() {
         return departureTime;
     }
@@ -88,5 +85,39 @@ public class Train {
 
     public void setArrivalTime(Date arrivalTime) {
         this.arrivalTime = arrivalTime;
+    }
+
+    public List<Ticket> getTickets() {
+        return tickets;
+    }
+
+    public void setTickets(List<Ticket> tickets) {
+        this.tickets = tickets;
+    }
+
+    public List<TrainRoute> getRoutes() {
+        return routes;
+    }
+
+    public void setRoutes(List<TrainRoute> routes) {
+        this.routes = routes;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Train train = (Train) o;
+        return Objects.equals(id, train.id) &&
+                Objects.equals(trainName, train.trainName) &&
+                Objects.equals(departureTime, train.departureTime) &&
+                Objects.equals(arrivalTime, train.arrivalTime) &&
+                Objects.equals(tickets, train.tickets) &&
+                Objects.equals(routes, train.routes);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, trainName, departureTime, arrivalTime, tickets, routes);
     }
 }

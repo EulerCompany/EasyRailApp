@@ -1,6 +1,7 @@
 package com.repository;
 
 import com.entity.RouteStation;
+import com.entity.TrainRoute;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
