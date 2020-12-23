@@ -1,0 +1,128 @@
+body {
+  line-height: small;
+}
+
+/* header */
+.navbar {
+  height: 10vh;
+}
+.navbar-nav > li{
+  padding-left:30px;
+  padding-right:30px;
+  font-size: 20px;
+}
+
+/* main */
+.main-wrapper {
+  padding: 10vh 0 10vh 0;
+}
+
+.main-wrapper p {
+  font-size: 40px;
+}
+
+/* carriages */
+
+.carriages {
+  padding: 3vh;
+}
+
+.carriages img {
+  height: 40px;
+}
+
+.carriages .btn-group {
+  position: relative;
+}
+
+.carriages .btn.active {
+  transform: translate(0, 20%);
+  transition: 300ms;
+}
+
+.carriages .btn:hover {
+  transform: translate(0, 20%);
+  transition: 300ms;
+}
+
+.carriages .btn:not(:hover) {
+  transition: 300ms;
+}
+
+.carriages .img-overlay {
+  position: absolute;
+    top: 40%;
+    left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* train-data */
+.train-data {
+  height: 10vh;
+}
+
+/* seats */
+
+.seats-wrapper > img {
+  margin: auto;
+  padding: 5%;
+  height: 55vh;
+}
+
+.flour .coupe .seats {
+  padding-top: 0;
+}
+
+.flour .side .seats {
+  padding-bottom: 0;
+}
+
+.flour.img-overlay {
+  border: 20px solid black;
+  border-radius: 30px;
+}
+
+.seats img {
+  width: 40px;
+  margin: 1px;
+}
+
+.seats {
+  padding: 3vh;
+}
+
+.seats .btn-group {
+  position: relative;
+}
+
+.seats .img-overlay {
+  position: absolute;
+    top: 45%;
+    left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.seats .btn {
+  padding: 0;
+}
+
+.btn.active .hue{
+  filter: invert(2);
+}
+
+.coupe:not(:last-child) {
+  border-right: 5px solid black;
+}
+
+/* search-butt */
+.search-butt {
+  margin-top: 3vh;
+  font-size: 15px;
+  border-color:rgba(0,0,0,0.2);
+  background-color: white;
+}
+
+/* footer */
+footer {
+  background-color: rgba(0, 0, 0, 0.5);
+}

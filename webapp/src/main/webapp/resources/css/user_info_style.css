@@ -1,0 +1,78 @@
+.ui-w-100 {
+    width: 100px !important;
+    height: auto;
+}
+
+.card {
+    background-clip: padding-box;
+    box-shadow: 0 1px 4px rgba(24,28,33,0.012);
+}
+
+.user-view-table td:first-child {
+    width: 9rem;
+}
+.user-view-table td {
+    padding-right: 0;
+    padding-left: 0;
+    float:right;
+    text-align: center;
+    background-color: rgb(242,242,242);
+    border: 0;
+}
+
+.menu-head  {
+  background-color: rgb(140,74,92) !important;
+  color:white !important;
+}
+.active-menu-entry {
+  background-color: rgb(186,186,186) !important;
+}
+.text-light {
+    color: #babbbc !important;
+}
+
+.card .row-bordered>[class*=" col-"]::after {
+    border-color: rgba(24,28,33,0.075);
+}
+
+.text-xlarge {
+    font-size: 170% !important;
+}
+
+
+li {
+  font-size: 20px;
+}
+
+
+.navbar-nav > li{
+  padding-left:30px;
+  padding-right:30px;
+}
+
+footer {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+#bootday{
+  margin-top: 120px;
+}
+
+.card-body{
+  float: right;
+}
+
+.sorting {
+  padding-left: 30px;
+  margin-top: -50px;
+  padding-bottom: 20px;
+}
+
+.table-responsive {
+  padding-left: 20px;
+}
+
+.sorting.sorting-button {
+  height: 20px;
+  width: 50px;
+}
