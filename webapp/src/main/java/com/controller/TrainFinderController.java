@@ -48,43 +48,56 @@ public class TrainFinderController {
                                @RequestParam("date") String date){
 
 
-        Route route = routeRepository.findByDescription("ROMA ROMA");
-        var stations  = route.getStations();
-        for(RouteStation rs: stations) {
-            System.out.println(rs.getOrder());
-        }
+//        Route route = routeRepository.findByDescription("ROMA ROMA");
+//        var stations  = route.getStations();
+//        for(RouteStation rs: stations) {
+//            System.out.println(rs.getOrder());
+//        }
 
         //TODO proper date formation...roma poimet
-        Date departureDate = new Date();
-        try {
-            departureDate = new SimpleDateFormat("yyyy-MM-dd").parse(date);
-            System.out.println(departureDate);
-        }
-        catch (ParseException pe){
-
-        }
+//        Date departureDate = new Date();
+//        try {
+//            departureDate = new SimpleDateFormat("yyyy-MM-dd").parse(date);
+//            System.out.println(departureDate);
+//        }
+//        catch (ParseException pe){
+//
+//        }
         City firstCity = cityService.findCityByName(firstName);
         City lastCity = cityService.findCityByName(secondName);
-
+        System.out.println("after city");
         if(firstCity == null || lastCity == null) {
             return "No rides available";
         }
 
         List<Station> firstCityStations = firstCity.getStations();
         List<Station> lastCityStations = lastCity.getStations();
+        for(Station st : firstCityStations) {
+            System.out.println(st.getStationName());
+        }
+        System.out.println("after list station");
 
         Station fstation = firstCityStations.get(0);
         Station lstation = lastCityStations.get(0);
 
-        Route froute = fstation.getRoutes().get(0).getRoute();
-        Route lroute = lstation.getRoutes().get(0).getRoute();
 
-        if(froute.getId().equals(lroute.getId())){
-            System.out.println("YES");
-        }
-        else {
-            System.out.println("NO");
-        }
+        System.out.println("after station");
+
+
+
+        List<RouteStation> rt = routeStationRepository.findAll();
+
+        RouteStation rtt = routeStationRepository.findByStationId(1L);
+        Station stt = rtt.getStation();
+        System.out.println(stt.getStationName());
+//        Route lroute = lstation.getRoutes().get(0).getRoute();
+
+//
+//        if(froute.getId().equals(lroute.getId())){
+//            System.out.println("YES");
+//        }
+//        else {
+//        }
 
 //        for(Station fstation: firstCityStations) {
 //
@@ -96,7 +109,7 @@ public class TrainFinderController {
 
 
 
-        List<Train> trains = trainFinderService.searchForTrains(firstCity, lastCity, departureDate);
+//        List<Train> trains = trainFinderService.searchForTrains(firstCity, lastCity, departureDate);
 
 
 
