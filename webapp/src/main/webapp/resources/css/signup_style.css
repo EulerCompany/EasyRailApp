@@ -1,0 +1,64 @@
+.train-primary {
+  position: relative;
+}
+
+
+li {
+  font-size: 20px;
+}
+.navbar-nav > li{
+  padding-left:30px;
+  padding-right:30px;
+}
+
+.start-searching{
+  font-size: 25px;
+  border-color:rgba(0.5,0,0,0.2);
+  background-color: rgb(230, 255, 255);
+  border-radius: 8px;
+  width: 50%;
+  padding: 5px;
+}
+
+footer {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+#login .container #login-row #login-column #login-box {
+  margin-top: 160px;
+  max-width: 600px;
+  height: 560px;
+  border: 1px solid #9C9C9C;
+  background-color: #EAEAEA;
+}
+#login .container #login-row #login-column #login-box #login-form {
+  padding: 20px;
+}
+#login .container #login-row #login-column #login-box #login-form #register-link {
+  margin-top: -85px;
+}
+
+.text-right {
+  padding: 35px;
+}
+
+navbar-dark .navbar-nav .nav-link {
+  color: #fff;
+}
+
+.train-logo {
+  opacity: 1.0;
+}
+
+.navbar.navbar-dark.navbar-expand-md.fixed-top {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.img-fluid {
+  width: 100%;
+  height: auto;
+}
+
+.container-fluid.train-primary {
+  padding: 0 0;
+}

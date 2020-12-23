@@ -1,0 +1,137 @@
+body {
+  line-height: small;
+}
+
+/* header */
+.navbar {
+  height: 10vh;
+}
+.navbar-nav > li{
+  padding-left:30px;
+  padding-right:30px;
+  font-size: 20px;
+}
+
+/* banner */
+.train-primary {
+  position: relative;
+  text-align: center;
+  color: white;
+  font-size: 75px;
+}
+
+.greeting {
+  position: absolute;
+    top: 45%;
+    left: 50%;
+	transform: translate(-50%,-50%);
+  z-index: 100;
+}
+
+.arrow-down {
+  position: absolute;
+    top: 85%;
+    left: 50%;
+  transform: translate(-50%,-50%);
+  z-index: 100;
+}
+
+/* search */
+.search-background {
+  background: #F4FDFF;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.popular-routes {
+  margin: auto;
+  font-size: 45px;
+  height: 10vh;
+}
+
+.route {
+  font-size: 20px;
+  padding: 15px;
+  background-color: #F2F2F2;
+}
+
+.route img {
+  margin: 5px 5px 0 5px;
+  width: 20px;
+  height: 20px;
+}
+
+.search-background .row {
+  margin: 1vh;
+}
+
+.search-background .row:first-child {
+  margin-top: 0;
+}
+
+.search-background .row:last-child {
+  height: 20vh;
+  margin-bottom: 0;
+}
+
+.form-group input {
+  height: 10vh;
+}
+
+.form-group label {
+  font-size: 30px;
+  height: 10vh;
+  margin: 0;
+}
+
+.search-butt {
+  height: 10vh;
+  width: 35%;
+  margin: auto;
+  font-size: 30px;
+}
+
+
+#to-date {
+  border-color: rgba(0,0,0,0.2);
+}
+
+#from-date {
+  border-color: rgba(0,0,0,0.2);
+}
+
+#calendar {
+  border-color: rgba(0,0,0,0.2);
+}
+
+.search-butt {
+  border-color:rgba(0,0,0,0.2);
+  background-color: white;
+}
+
+/* footer */
+footer {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: #fff;
+}
+
+.train-logo {
+  opacity: 1.0;
+}
+
+.navbar.navbar-dark.navbar-expand-md.fixed-top {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.img-fluid {
+  width: 100%;
+  height: auto;
+}
+
+.container-fluid.train-primary {
+  padding: 0 0;
+}
