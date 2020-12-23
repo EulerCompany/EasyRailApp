@@ -20,7 +20,21 @@ public class RouteStation {
     @Column(name = "order_station")
     private Long order;
 
+    public Route getRoute() {
+        return route;
+    }
 
+    public void setRoute(Route route) {
+        this.route = route;
+    }
+
+    public Station getStation() {
+        return station;
+    }
+
+    public void setStation(Station station) {
+        this.station = station;
+    }
 
     public RouteStation() {}
 

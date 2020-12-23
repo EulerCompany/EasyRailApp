@@ -70,17 +70,28 @@ public class TrainFinderController {
             return "No rides available";
         }
 
-
-
         List<Station> firstCityStations = firstCity.getStations();
         List<Station> lastCityStations = lastCity.getStations();
 
-        for(Station fstation: firstCityStations) {
+        Station fstation = firstCityStations.get(0);
+        Station lstation = lastCityStations.get(0);
 
-            for (Station lstation: lastCityStations) {
+        Route froute = fstation.getRoutes().get(0).getRoute();
+        Route lroute = lstation.getRoutes().get(0).getRoute();
 
-            }
+        if(froute.getId().equals(lroute.getId())){
+            System.out.println("YES");
         }
+        else {
+            System.out.println("NO");
+        }
+
+//        for(Station fstation: firstCityStations) {
+//
+//            for (Station lstation: lastCityStations) {
+//
+//            }
+//        }
 
 
 
