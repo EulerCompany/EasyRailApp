@@ -40,4 +40,16 @@ public class TrainService {
 
         return false;
     }
+    public boolean saveTrain(String trainName) {
+        Train trainFromDb = trainRepository.findByTrainName(trainName);
+
+        Train train = new Train();
+        train.setTrainName(trainName);
+
+        if (trainFromDb == null) {
+            trainRepository.save(train);
+            return true;
+        }
+        return false;
+    }
 }
