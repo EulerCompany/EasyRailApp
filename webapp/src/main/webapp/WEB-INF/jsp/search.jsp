@@ -13,9 +13,9 @@
   <form method="POST" action="/search">
     <h2>Поиск городов</h2>
     <div>
-      <input name="first_name" type="text" placeholder="CityName"
+      <input name="firstCity" type="text" placeholder="CityName"
              autofocus="true"/>
-      <input name="second_name" type="text" placeholder="SecondCityName"/>
+      <input name="lastCity" type="text" placeholder="SecondCityName"/>
        <input name="date" type="date" path = "date" placeholder="Date"/>
       <button type="submit">Log In</button>
 

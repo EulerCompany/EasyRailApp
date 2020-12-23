@@ -40,71 +40,48 @@ public class TrainFinderController {
     @Autowired
     private TrainRepository trainRepository;
 
+    @Autowired
+    private DateFormatterService dateFormatterService;
+
     @GetMapping("/search")
     public String search(Model model) {
 
         return "search";
     }
 
-    //TODO reformat
     @RequestMapping(value = "/search", method = RequestMethod.POST)
-    public String searchRoutes(@RequestParam("first_name") String firstName,
-                               @RequestParam("second_name") String secondName,
-                               @RequestParam("date") String date){
+    public String searchRoutes(@RequestParam("firstCity") String firstCity,
+                               @RequestParam("lastCity") String lastCity,
+                               @RequestParam("date") String dateString){
 
 
-//        Route route = routeRepository.findByDescription("ROMA ROMA");
-//        var stations  = route.getStations();
-//        for(RouteStation rs: stations) {
-//            System.out.println(rs.getOrder());
-//        }
+        City fcity = cityService.findCityByName(firstCity);
+        City lcity = cityService.findCityByName(lastCity);
 
-        //TODO proper date formation...roma poimet
-//        Date departureDate = new Date();
-//        try {
-//            departureDate = new SimpleDateFormat("yyyy-MM-dd").parse(date);
-//            System.out.println(departureDate);
-//        }
-//        catch (ParseException pe){
-//
-//        }
-        City firstCity = cityService.findCityByName(firstName);
-        City lastCity = cityService.findCityByName(secondName);
-        System.out.println("after city");
-        if(firstCity == null || lastCity == null) {
-            return "No rides available";
+
+        if(fcity == null || lcity == null) {
+            return "redirect:/search";
         }
+        Date date = null;
+        try{
+            date = dateFormatterService.dateFromString(dateString);
+        }
+        catch (ParseException pe) {
 
-
-
-        Station firstCityStations = firstCity.getFirstStation();
-        Station lastCityStations = lastCity.getFirstStation();
-
-
-        System.out.println(firstCityStations.getStationName());
-        System.out.println(lastCityStations.getStationName());
-
-
-        List<RouteStation> rt1 = routeStationRepository.findByStationId(firstCityStations.getId());
-        List<RouteStation> rt2 = routeStationRepository.findByStationId(lastCityStations.getId());
-
-        List<Long> routeIds = new ArrayList<>();
-
-
-        for(RouteStation t : rt1) {
-            for(RouteStation tt : rt2){
-                if(t.getRoute().getId() == tt.getRoute().getId() && t.getOrder()  < tt.getOrder()) {
-                    routeIds.add(t.getRoute().getId());
-                }
+        }
+        if(date == null) {
+            //TODO incorrect date
+            return "redirect:/search";
+        }
+        else {
+            List<Train> trains = trainFinderService.searchForTrains(fcity,lcity, date);
+            if(trains != null) {
+                //TODO display trains
+            }
+            else {
+                //No rides available
             }
         }
-
-        for(Long l : routeIds) {
-            Train train = trainRepository.getTrainByRouteId(l);
-            System.out.println(train.getTrainName());
-        }
-
-
 
 
 

@@ -3,6 +3,9 @@ package com.entity;
 import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.*;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -76,6 +79,14 @@ public class Train {
 
     public Date getDepartureTime() {
         return departureTime;
+    }
+
+    public Date getDepartureDate() throws ParseException {
+        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+
+        Date departureDate = departureTime;
+
+        return formatter.parse(formatter.format(departureDate));
     }
 
     public void setDepartureTime(Date departureTime) {
