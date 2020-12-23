@@ -1,7 +1,6 @@
 package com.controller;
 
-import com.entity.City;
-import com.entity.Station;
+import com.entity.*;
 import com.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,6 +25,9 @@ public class AdminController {
 
     @Autowired
     private TrainService trainService;
+
+    @Autowired
+    private TicketService ticketService;
 
     @Autowired
     private DateFormatterService dateFormatterService;
@@ -92,14 +94,32 @@ public class AdminController {
             trainService.saveTrain(trainName,
                     dateFormatterService.dateFromString(departureTime),
                     dateFormatterService.dateFromString(arrivalTime));
-
         }
         catch (ParseException pe) {
             pe.printStackTrace();
         }
-
-
         return "";
     }
 
+    @RequestMapping(value = "/admin/addTicket", method = RequestMethod.GET)
+    @ResponseBody
+    public String addTicket(@RequestParam Double price,
+                            @RequestParam String ticketClass,
+                            @RequestParam String trainname) {
+
+        Ticket ticket = new Ticket();
+        ticket.setPrice(price);
+        ticket.setTicketClass(ticketClass);
+        Train train = trainService.findByTrainName(trainname);
+
+        if(train != null) {
+            ticket.setTrain(train);
+            ticketService.saveTicket(ticket);
+            return "Ticket added";
+        }
+        else {
+            return "Train doesn't exist";
+        }
+
+    }
 }

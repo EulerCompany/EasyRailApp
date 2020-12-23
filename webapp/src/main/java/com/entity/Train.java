@@ -53,6 +53,7 @@ public class Train {
         this.arrivalTime = arrivalTime;
     }
 
+
     public Long getId() {
         return id;
     }

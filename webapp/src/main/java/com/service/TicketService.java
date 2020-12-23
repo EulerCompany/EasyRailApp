@@ -14,5 +14,9 @@ public class TicketService {
     @Autowired
     private TicketRepository ticketRepository;
 
+    public boolean saveTicket(Ticket ticket) {
+        ticketRepository.save(ticket);
+        return true;
+    }
 
 }

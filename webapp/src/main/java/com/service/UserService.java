@@ -1,6 +1,7 @@
 package com.service;
 
 
+import com.entity.City;
 import com.entity.Role;
 import com.entity.User;
 import com.repository.RoleRepository;
@@ -80,4 +81,8 @@ public class UserService implements UserDetailsService {
         return em.createQuery("SELECT u FROM User u WHERE u.id > :paramId", User.class)
                 .setParameter("paramId", idMin).getResultList();
     }
+    public User findUserByName(String name) {
+        return userRepository.findByUsername(name);
+    }
+
 }
