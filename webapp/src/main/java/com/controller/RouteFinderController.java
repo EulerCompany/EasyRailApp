@@ -53,7 +53,7 @@ public class RouteFinderController {
         //TODO search and return routes
 
 
-        return "redirect:/search";
+        return "mlogin";
     }
 
 
