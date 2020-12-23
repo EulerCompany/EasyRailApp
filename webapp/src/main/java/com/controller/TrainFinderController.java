@@ -77,6 +77,7 @@ public class TrainFinderController {
             List<Train> trains = trainFinderService.searchForTrains(fcity,lcity, date);
             if(trains != null) {
                 //TODO display trains
+
             }
             else {
                 //No rides available
@@ -87,6 +88,5 @@ public class TrainFinderController {
 
         return "redirect:/search";
     }
-
 
 }

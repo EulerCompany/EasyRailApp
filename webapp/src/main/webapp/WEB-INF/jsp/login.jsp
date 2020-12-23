@@ -26,9 +26,9 @@
         </a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse justify-content-end" id="navcol-1">
                 <ul class="nav navbar-nav">
-                  <li class="nav-item" role="presentation"><a class="nav-link" href="#">Замовити квитки</a></li>
+                  <li class="nav-item" role="presentation"><a class="nav-link" href="/">Замовити квитки</a></li>
                   <li class="nav-item" role="presentation"><a class="nav-link" href="#">Контакти</a></li>
-                  <li class="nav-item" role="presentation"><a class="nav-link" href="#">Увійти</a></li>
+                  <li class="nav-item" role="presentation"><a class="nav-link" href="/login">Увійти</a></li>
                   <li class="nav-item" role="presentation"><a class="nav-link" href="#"><i class="icon ion-android-cart"></i></a></li>
                 </ul>
             </div>

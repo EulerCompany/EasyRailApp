@@ -1,3 +1,6 @@
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,28 +10,34 @@
     <title>EasyRail — профіль </title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="http://netdna.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="user_info_style.css">
+    <link rel="stylesheet" href="${contextPath}/resources/css/user_info_style.css">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>EasyRail — профіль</title>
-    <!-- <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css"> -->
-    <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
+    <!-- <link rel="stylesheet" href="${contextPath}/resources/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="${contextPath}/resources/fonts/ionicons.min.css">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 
 <body>
-
+<sec:authorize access="!isAuthenticated()">
+    <% response.sendRedirect("/"); %>
+</sec:authorize>
   <header>
     <nav class="navbar navbar-dark navbar-expand-md fixed-top">
-        <div class="container-fluid"><a class="navbar-brand" href="#"><img class="train-logo" src="assets/img/train.png" width="55" height="55">
+        <div class="container-fluid"><a class="navbar-brand" href="/"><img class="train-logo" src="${contextPath}/resources/img/train.png" width="55" height="55">
           <span style="font-size:25px">EasyRail</span>
         </a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse justify-content-end" id="navcol-1">
                 <ul class="nav navbar-nav">
-                  <li class="nav-item" role="presentation"><a class="nav-link" href="#">Замовити квитки</a></li>
+                  <li class="nav-item" role="presentation"><a class="nav-link" href="/">Замовити квитки</a></li>
                   <li class="nav-item" role="presentation"><a class="nav-link" href="#">Контакти</a></li>
-                  <li class="nav-item" role="presentation"><a class="nav-link" href="#">Увійти</a></li>
+                <sec:authorize access="!isAuthenticated()">
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/login">Увійти</a></li>
+                </sec:authorize>
+                <sec:authorize access="isAuthenticated()">
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/logout">Вийти</a></li>
+                </sec:authorize>
                   <li class="nav-item" role="presentation"><a class="nav-link" href="#"><i class="icon ion-android-cart"></i></a></li>
                 </ul>
             </div>
@@ -43,9 +52,11 @@
         <div class="card-body d-flex justify-content-between flex-row">
           <div class="left-wrapper d-flex align-items-start flex-column">
             <div class="media align-self-start" id="profile-basic">
-              <img src="person-clipart.png" alt="" class="d-block ui-w-100 rounded-circle">
+              <img src="${contextPath}/resources/img/person-clipart.png" alt="" class="d-block ui-w-100 rounded-circle">
               <div class="media-body ml-4">
-                <h4 class="font-weight-bold mb-0">Вітаємо, <span id="name">Name</span> <span id="surname">Surname</span></h4>
+                <h4 class="font-weight-bold mb-0">Вітаємо, <span id="name">
+                    ${pageContext.request.userPrincipal.name}
+                </span> <span id="surname">Surname</span></h4>
                 <a href="javascript:void(0)" class="btn btn-default btn-sm icon-btn"><i class="fa fa-mail"></i></a>
               </div>
             </div>
@@ -109,13 +120,13 @@
                 <div class="container-fluid">
                   <a class="navbar-brand" href="#">
                     <span style="font-size:25px">EasyRail</span>
-                    <img class="train-logo" src="assets/img/train.png" width="55" height="55">
+                    <img class="train-logo" src="${contextPath}/resources/img/train.png" width="55" height="55">
                   </a>
                   <button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"></button>
                   <div class="collapse navbar-collapse justify-content-end" id="navcol-1">
                     <ul class="nav navbar-nav">
                       <li class="nav-item" role="presentation"><a class="nav-link" href="#">Про нас</a></li>
-                      <li class="nav-item" role="presentation"><a class="nav-link" href="#">Замовити квитки</a></li>
+                      <li class="nav-item" role="presentation"><a class="nav-link" href="/">Замовити квитки</a></li>
                       <li class="nav-item" role="presentation"><a class="nav-link" href="#">Задати питання</a></li>
                       <li class="nav-item" role="presentation"><a class="nav-link" href="#">Повернення квитків</a></li>
                       <li class="nav-item" role="presentation"><a class="nav-link" href="#">Робота з нами</a></li>
@@ -133,9 +144,7 @@
 
 <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="http://netdna.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-<script type="text/javascript"></script>
 </body>
 </html>
 
 
-postgres

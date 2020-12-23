@@ -25,7 +25,13 @@
               <ul class="nav navbar-nav">
                 <li class="nav-item" role="presentation"><a class="nav-link" href="/">Замовити квитки</a></li>
                 <li class="nav-item" role="presentation"><a class="nav-link" href="#">Контакти</a></li>
-                <li class="nav-item" role="presentation"><a class="nav-link" href="/login">Увійти</a></li>
+                 <sec:authorize access="!isAuthenticated()">
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/login">Увійти</a></li>
+                 </sec:authorize>
+                 <sec:authorize access="isAuthenticated()">
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/account">Акаунт</a></li>
+                 </sec:authorize>
+
                 <li class="nav-item" role="presentation"><a class="nav-link" href="#"><i class="icon ion-android-cart"></i></a></li>
               </ul>
           </div>
