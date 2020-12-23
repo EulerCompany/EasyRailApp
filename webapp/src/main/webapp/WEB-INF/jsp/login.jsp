@@ -21,7 +21,7 @@
   <!-- header -->
   <header>
     <nav class="navbar navbar-dark navbar-expand-md fixed-top">
-        <div class="container-fluid"><a class="navbar-brand" href="#"><img class="train-logo" src="${contextPath}/resources/img/train.png" width="55" height="55">
+        <div class="container-fluid"><a class="navbar-brand" href="/"><img class="train-logo" src="${contextPath}/resources/img/train.png" width="55" height="55">
           <span style="font-size:25px">EasyRail</span>
         </a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse justify-content-end" id="navcol-1">
