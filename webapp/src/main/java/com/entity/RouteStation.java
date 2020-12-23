@@ -52,4 +52,9 @@ public class RouteStation {
         this.id = new RouteStationId(route.getId(), station.getId());
     }
 
+    public RouteStation(Route route, Station station, Long order) {
+        this(route, station);
+        this.order = order;
+    }
+
 }

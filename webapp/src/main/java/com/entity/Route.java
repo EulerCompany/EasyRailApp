@@ -22,7 +22,6 @@ public class Route {
     private String description;
 
 
-
     @OneToMany(
             mappedBy = "route",
             cascade = CascadeType.ALL,

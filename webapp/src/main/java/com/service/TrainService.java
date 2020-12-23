@@ -52,4 +52,14 @@ public class TrainService {
         }
         return false;
     }
+
+    public boolean saveTrain(Train train) {
+        Train trainFromDb = trainRepository.findByTrainName(train.getTrainName());
+
+        if (trainFromDb == null) {
+            trainRepository.save(train);
+            return true;
+        }
+        return false;
+    }
 }

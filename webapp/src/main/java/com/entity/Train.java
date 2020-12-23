@@ -42,7 +42,6 @@ public class Train {
     private Route route;
 
 
-
     public Train() {
 
     }
@@ -53,6 +52,13 @@ public class Train {
         this.arrivalTime = arrivalTime;
     }
 
+    public Route getRoute() {
+        return route;
+    }
+
+    public void setRoute(Route route) {
+        this.route = route;
+    }
 
     public Long getId() {
         return id;

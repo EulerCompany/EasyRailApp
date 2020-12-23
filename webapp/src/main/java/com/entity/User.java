@@ -66,6 +66,13 @@ public class User implements CustomUserDetails {
     public User() {
     }
 
+    public User(String username, String firstname, String lastname, String password){
+        this.username = username;
+        this.firstname =firstname;
+        this.lastname = lastname;
+        this.password = password;
+    }
+
     public Long getId() {
         return id;
     }

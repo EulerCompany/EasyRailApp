@@ -32,6 +32,8 @@ public class AdminController {
     @Autowired
     private DateFormatterService dateFormatterService;
 
+    @Autowired SeedingService seedingService;
+
     @GetMapping("/admin")
     public String userList(Model model) {
         model.addAttribute("allUsers", userService.allUsers());
@@ -121,5 +123,12 @@ public class AdminController {
             return "Train doesn't exist";
         }
 
+    }
+
+    @GetMapping("/seed")
+    public String seed() {
+
+        seedingService.seed();
+        return "index";
     }
 }

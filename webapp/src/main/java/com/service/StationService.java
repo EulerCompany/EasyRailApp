@@ -27,6 +27,10 @@ public class StationService {
         stationRepository.save(station);
         return true;
     }
+    public Station findStationByCityName(String cityName) {
+        return stationRepository.findByCityName(cityName);
+    }
+
 
     public boolean addStationIfCityExists(City city, Station station) {
 

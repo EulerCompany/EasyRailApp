@@ -6,4 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface StationRepository extends JpaRepository<Station, Long> {
     Station findByStationName(String name);
     Station findByCityId(Long id);
+    Station findByCityName(String name);
 }

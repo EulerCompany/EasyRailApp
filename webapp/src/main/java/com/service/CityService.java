@@ -5,6 +5,7 @@ import com.repository.CityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -36,6 +37,10 @@ public class CityService {
 
     public City findCityByName(String name) {
         return cityRepository.findByName(name);
+    }
+
+    List<City> findAll() {
+        return cityRepository.findAll();
     }
 
 }
