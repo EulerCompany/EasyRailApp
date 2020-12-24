@@ -1,5 +1,6 @@
 package com.service;
 
+import com.entity.Route;
 import com.entity.Train;
 import com.repository.TrainRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,11 +18,11 @@ public class TrainService {
         return trainRepository.findByTrainName(name);
     }
 
-    public boolean saveTrain(String trainName, Date departureTime, Date arrivalTime) {
+    public boolean saveTrain(String trainName, Date departureTime, Date arrivalTime, Route route) {
         Train trainFromDb = trainRepository.findByTrainName(trainName);
 
         Train train = new Train(trainName, departureTime, arrivalTime);
-
+        train.setRoute(route);
         if(trainFromDb == null) {
             trainRepository.save(train);
             return true;

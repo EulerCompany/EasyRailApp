@@ -5,6 +5,8 @@ import com.repository.RouteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class RouteService {
     @Autowired
@@ -24,5 +26,9 @@ public class RouteService {
 
         routeRepository.save(route);
         return true;
+    }
+
+    public Optional<Route> findById(Long id){
+        return routeRepository.findById(id);
     }
 }

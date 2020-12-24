@@ -43,25 +43,26 @@ public class TrainFinderController {
     @Autowired
     private DateFormatterService dateFormatterService;
 
-    @GetMapping("/search")
+    @Autowired
+    private UserService userService;
+
+    @GetMapping("/")
     public String search(Model model) {
-        return "search";
+        return "index";
     }
 
-    @RequestMapping(value = "/search", method = RequestMethod.POST)
-    public String searchRoutes(@RequestParam("firstCity") String firstCity,
-                               @RequestParam("lastCity") String lastCity,
-                               @RequestParam("date") String dateString){
+    @RequestMapping(value = "/api/search", method = RequestMethod.POST)
+    public @ResponseBody List<Train> searchRoutes(Model model, @RequestParam("firstCity") String firstCity,
+                                                  @RequestParam("lastCity") String lastCity,
+                                                  @RequestParam("date") String dateString){
 
 
         City fcity = cityService.findCityByName(firstCity);
         City lcity = cityService.findCityByName(lastCity);
 
 
-
-
         if(fcity == null || lcity == null) {
-            return "redirect:/";
+            return null;
         }
         Date date = null;
         try{
@@ -72,7 +73,7 @@ public class TrainFinderController {
         }
         if(date == null) {
             //TODO incorrect date
-            return "redirect:/";
+            return null;
         }
         else {
             List<Train> trains = trainFinderService.searchForTrains(fcity,lcity, date);
@@ -81,15 +82,15 @@ public class TrainFinderController {
                 for (Train t: trains) {
                     System.out.println(t.getTrainName());
                 }
+                model.addAttribute("trains", trains);
+                return trains;
+
             }
             else {
-                //No rides available
+                return null;
             }
         }
 
-
-
-        return "redirect:/";
     }
 
 }

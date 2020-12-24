@@ -55,6 +55,12 @@ public class TrainFinderService {
             try{
 
                 if(train.getDepartureDate().compareTo(date) == 0) {
+                    for(Ticket t : train.getTickets()){
+                        t.setTrain(null);
+                        t.setUser(null);
+
+                    }
+                    train.setRoute(null);
                     trains.add(train);
                 }
 

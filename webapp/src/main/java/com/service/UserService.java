@@ -1,7 +1,6 @@
 package com.service;
 
 
-import com.entity.City;
 import com.entity.Role;
 import com.entity.User;
 import com.repository.RoleRepository;
@@ -43,9 +42,8 @@ public class UserService implements UserDetailsService {
         return user;
     }
 
-    public User findUserById(Long userId) {
-        Optional<User> userFromDb = userRepository.findById(userId);
-        return userFromDb.orElse(new User());
+    public Optional<User> findUserById(Long userId) {
+        return  userRepository.findById(userId);
     }
 
     public List<User> allUsers() {

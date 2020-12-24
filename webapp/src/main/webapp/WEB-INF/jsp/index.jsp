@@ -150,6 +150,29 @@
         <!-- none -->
       </div>
     </div>
+
+    <div>
+      <table>
+        <thead>
+        <th>ID</th>
+        <th>UserName</th>
+        <th>Password</th>
+        <th>Roles</th>
+        </thead>
+        <c:forEach items="${trains}" var="train">
+          <tr>
+            <td>${train.id}</td>
+            <td>${train.name}</td>
+
+
+
+
+          </tr>
+        </c:forEach>
+      </table>
+      <a href="/">Главная</a>
+    </div>
+
   </main>
 
   <footer>
