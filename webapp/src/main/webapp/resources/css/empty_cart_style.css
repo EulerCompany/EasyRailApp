@@ -1,4 +1,26 @@
 
+.navbar-dark .navbar-nav .nav-link {
+  color: #fff;
+}
+
+.train-logo {
+  opacity: 1.0;
+}
+
+.navbar.navbar-dark.navbar-expand-md.fixed-top {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.img-fluid {
+  width: 100%;
+  height: auto;
+}
+
+.container-fluid.train-primary {
+  padding: 0 0;
+}
+
+
 .train-primary {
   position: relative;
   text-align: center;
