@@ -11,7 +11,6 @@
 </head>
 <body>
 <div>
-  <h3>${pageContext.request.userPrincipal.name}</h3>
   <h3>${pageContext.request.userPrincipal.name}</h3>    
   <sec:authorize access="!isAuthenticated()">
     <h4><a href="/login">Войти</a></h4>

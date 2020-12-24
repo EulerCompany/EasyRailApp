@@ -14,7 +14,6 @@ public class City {
     @Column(name = "name")
     private String name;
 
-    @Transient
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "city_id")
     private List<Station> stations;

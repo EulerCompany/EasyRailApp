@@ -2,6 +2,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 
+
 <!DOCTYPE html>
 <html>
 
@@ -11,14 +12,14 @@
     <title>EasyRail — головна</title>
     <link rel="stylesheet" href="${contextPath}/resources/css/bootstrap.min.css">
     <link rel="stylesheet" href="${contextPath}/resources/fonts/ionicons.min.css">
-    <link rel="stylesheet" href="${contextPath}resources/css/main_page.css">
+    <link rel="stylesheet" href="${contextPath}/resources/css/main_page.css">
 </head>
 
 <body class="text-dark">
   <!-- header -->
   <header>
     <nav class="navbar navbar-dark navbar-expand-md fixed-top">
-      <div class="container-fluid"><a class="navbar-brand" href="/"><img class="train-logo" src="${contextPath}/resources/img/train.png" width="55" height="55">
+      <div class="container-fluid"><a class="navbar-brand" href="#"><img class="train-logo" src="${contextPath}/resources/img/train.png" width="55" height="55">
         <span style="font-size:25px">EasyRail</span>
       </a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
           <div class="collapse navbar-collapse justify-content-end" id="navcol-1">
@@ -26,13 +27,12 @@
                 <li class="nav-item" role="presentation"><a class="nav-link" href="/">Замовити квитки</a></li>
                 <li class="nav-item" role="presentation"><a class="nav-link" href="#">Контакти</a></li>
                  <sec:authorize access="!isAuthenticated()">
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="/login">Увійти</a></li>
+                                    <li class="nav-item" role="presentation"><a class="nav-link" href="/login">Увійти</a></li>
                  </sec:authorize>
                  <sec:authorize access="isAuthenticated()">
                     <li class="nav-item" role="presentation"><a class="nav-link" href="/account">Акаунт</a></li>
                  </sec:authorize>
-
-                <li class="nav-item" role="presentation"><a class="nav-link" href="#"><i class="icon ion-android-cart"></i></a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" href="/cart"><i class="icon ion-android-cart"></i></a></li>
               </ul>
           </div>
       </div>
@@ -89,58 +89,60 @@
           <!--заканчиваю делать []уйню-->
           <!-- input form -->
           <div class="input-wrapper container-fluid">
-            <div class="row">
-              <div class="col-1">
-                <!-- none -->
-              </div>
-              <!-- input form -->
-              <div class="col-10">
-                <form class="form-horizontal d-flex justify-content-center" role="form">
-                    <!-- from -->
-                  <div class="left col-6">
-                    <div class="form-group">
-                      <label class="control-label" for="from" >Звідки</label>
-                      <input type="from" id="from-date" class="form-control">
+            <form action="/search" method="post">
+              <div class="row">
+                <div class="col-1">
+                  <!-- none -->
+                </div>
+                <!-- input form -->
+                <div class="col-10">
+                  <div class="form-horizontal d-flex justify-content-center" role="form">
+                      <!-- from -->
+                    <div class="left col-6">
+                      <div class="form-group">
+                        <label class="control-label" for="from" >Звідки</label>
+                        <input name="firstCity" type="text" id="from-date" class="form-control">
+                      </div>
+                    </div>
+                    <!-- to -->
+                    <div class="right col-6">
+                      <div class="form-group">
+                        <label class="control-label" for="to" >Куди</label>
+                        <input name="lastCity" type="text" id="to-date" class="form-control">
+                      </div>
                     </div>
                   </div>
-                  <!-- to -->
-                  <div class="right col-6">
-                    <div class="form-group">
-                      <label class="control-label" for="to" >Куди</label>
-                      <input type="from" id="to-date" class="form-control">
+                </div>
+                <div class="col-1">
+                  <!-- none -->
+                </div>
+              </div>
+              <!-- calendar form -->
+              <div class="row">
+                <div class="col-1">
+                  <!-- none -->
+                </div>
+                <div class="butt-form col-10">
+                  <div class="form-horizontal d-flex justify-content-left">
+                    <div class="col-5">
+                      <div class="form-group">
+                        <label for="date">Час відправлення</label>
+                        <input name="date" type="date" id="calendar" class="form-control">
+                      </div>
                     </div>
                   </div>
-                </form>
+                </div>
+                <div class="col-1">
+                  <!-- none -->
+                </div>
               </div>
-              <div class="col-1">
-                <!-- none -->
+              <!-- search button -->
+              <div class="row">
+                <div class="search-butt btn-group" data-toggle="buttons">
+                  <button type="submit" class="btn search-butt">Пошук потягів</button>
+                </div>
               </div>
-            </div>
-            <!-- calendar form -->
-            <div class="row">
-              <div class="col-1">
-                <!-- none -->
-              </div>
-              <div class="butt-form col-10">
-                <form class="form-horizontal d-flex justify-content-left">
-                  <div class="col-5">
-                    <div class="form-group">
-                      <label for="date">Час відправлення</label>
-                      <input type="date" id="calendar" class="form-control">
-                    </div>
-                  </div>
-                </form>
-              </div>
-              <div class="col-1">
-                <!-- none -->
-              </div>
-            </div>
-            <!-- search button -->
-            <div class="row">
-              <div class="search-butt btn-group" data-toggle="buttons">
-                <button class="btn search-butt">Пошук потягів</button>
-              </div>
-            </div>
+            </form>
           </div>
         </div>
       </div>
@@ -162,7 +164,7 @@
           <div class="collapse navbar-collapse justify-content-end" id="navcol-1">
             <ul class="nav navbar-nav">
               <li class="nav-item" role="presentation"><a class="nav-link" href="#">Про нас</a></li>
-              <li class="nav-item" role="presentation"><a class="nav-link" href="#">Замовити квитки</a></li>
+              <li class="nav-item" role="presentation"><a class="nav-link" href="/">Замовити квитки</a></li>
               <li class="nav-item" role="presentation"><a class="nav-link" href="#">Задати питання</a></li>
               <li class="nav-item" role="presentation"><a class="nav-link" href="#">Повернення квитків</a></li>
               <li class="nav-item" role="presentation"><a class="nav-link" href="#">Робота з нами</a></li>
@@ -178,7 +180,6 @@
     <!-- Copyright -->
   </footer>
 
-  <script src="${contextPath}/resources/js/main_page.js"></script>
 </body>
 
 </html>

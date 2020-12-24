@@ -53,9 +53,11 @@ public class TrainFinderService {
         for(Long id : routeIds) {
             Train train = trainRepository.getTrainByRouteId(id);
             try{
-                if(train.getDepartureDate() == date) {
+
+                if(train.getDepartureDate().compareTo(date) == 0) {
                     trains.add(train);
                 }
+
             }
             catch (ParseException pe){
                 System.out.println("Parse Exception near searching for trains");

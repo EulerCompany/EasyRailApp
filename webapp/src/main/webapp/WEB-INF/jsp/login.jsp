@@ -29,7 +29,7 @@
                   <li class="nav-item" role="presentation"><a class="nav-link" href="/">Замовити квитки</a></li>
                   <li class="nav-item" role="presentation"><a class="nav-link" href="#">Контакти</a></li>
                   <li class="nav-item" role="presentation"><a class="nav-link" href="/login">Увійти</a></li>
-                  <li class="nav-item" role="presentation"><a class="nav-link" href="#"><i class="icon ion-android-cart"></i></a></li>
+                  <li class="nav-item" role="presentation"><a class="nav-link" href="/cart"><i class="icon ion-android-cart"></i></a></li>
                 </ul>
             </div>
         </div>
@@ -82,7 +82,7 @@
           <div class="collapse navbar-collapse justify-content-end" id="navcol-1">
             <ul class="nav navbar-nav">
               <li class="nav-item" role="presentation"><a class="nav-link" href="#">Про нас</a></li>
-              <li class="nav-item" role="presentation"><a class="nav-link" href="#">Замовити квитки</a></li>
+              <li class="nav-item" role="presentation"><a class="nav-link" href="/">Замовити квитки</a></li>
               <li class="nav-item" role="presentation"><a class="nav-link" href="#">Задати питання</a></li>
               <li class="nav-item" role="presentation"><a class="nav-link" href="#">Повернення квитків</a></li>
               <li class="nav-item" role="presentation"><a class="nav-link" href="#">Робота з нами</a></li>

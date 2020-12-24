@@ -38,7 +38,7 @@
                 <sec:authorize access="isAuthenticated()">
                     <li class="nav-item" role="presentation"><a class="nav-link" href="/logout">Вийти</a></li>
                 </sec:authorize>
-                  <li class="nav-item" role="presentation"><a class="nav-link" href="#"><i class="icon ion-android-cart"></i></a></li>
+                  <li class="nav-item" role="presentation"><a class="nav-link" href="/cart"><i class="icon ion-android-cart"></i></a></li>
                 </ul>
             </div>
         </div>
@@ -56,13 +56,10 @@
               <div class="media-body ml-4">
                 <h4 class="font-weight-bold mb-0">Вітаємо, <span id="name">
                     ${pageContext.request.userPrincipal.name}
-                </span> <span id="surname">Surname</span></h4>
                 <a href="javascript:void(0)" class="btn btn-default btn-sm icon-btn"><i class="fa fa-mail"></i></a>
               </div>
             </div>
-            <div class="sorting-butts  align-self-end">
-              <span class="sorting-button">Місяць</span> <span class="sorting-button">Півроку</span> <span class = "sorting-button">Рік</span> <span class = "sorting-button">Весь час</span>
-            </div>
+
           </div>
           <div class="right-wrapper">
             <table class="table user-view-table" id="initial-table">

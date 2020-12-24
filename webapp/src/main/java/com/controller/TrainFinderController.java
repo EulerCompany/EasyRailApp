@@ -45,7 +45,6 @@ public class TrainFinderController {
 
     @GetMapping("/search")
     public String search(Model model) {
-
         return "search";
     }
 
@@ -59,8 +58,10 @@ public class TrainFinderController {
         City lcity = cityService.findCityByName(lastCity);
 
 
+
+
         if(fcity == null || lcity == null) {
-            return "redirect:/search";
+            return "redirect:/";
         }
         Date date = null;
         try{
@@ -71,13 +72,15 @@ public class TrainFinderController {
         }
         if(date == null) {
             //TODO incorrect date
-            return "redirect:/search";
+            return "redirect:/";
         }
         else {
             List<Train> trains = trainFinderService.searchForTrains(fcity,lcity, date);
             if(trains != null) {
                 //TODO display trains
-
+                for (Train t: trains) {
+                    System.out.println(t.getTrainName());
+                }
             }
             else {
                 //No rides available
@@ -86,7 +89,7 @@ public class TrainFinderController {
 
 
 
-        return "redirect:/search";
+        return "redirect:/";
     }
 
 }
