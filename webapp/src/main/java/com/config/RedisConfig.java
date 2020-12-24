@@ -54,6 +54,6 @@ public class RedisConfig {
 
     @Bean
     ChannelTopic topic() {
-        return new ChannelTopic("pubsub:queue");
+        return new ChannelTopic("admin/boughtTicket");
     }
 }

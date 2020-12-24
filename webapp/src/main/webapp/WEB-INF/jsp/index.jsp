@@ -89,7 +89,7 @@
           <!--заканчиваю делать []уйню-->
           <!-- input form -->
           <div class="input-wrapper container-fluid">
-            <form action="/search" method="post">
+            <form action="/api/search" method="post">
               <div class="row">
                 <div class="col-1">
                   <!-- none -->
@@ -151,27 +151,7 @@
       </div>
     </div>
 
-    <div>
-      <table>
-        <thead>
-        <th>ID</th>
-        <th>UserName</th>
-        <th>Password</th>
-        <th>Roles</th>
-        </thead>
-        <c:forEach items="${trains}" var="train">
-          <tr>
-            <td>${train.id}</td>
-            <td>${train.name}</td>
 
-
-
-
-          </tr>
-        </c:forEach>
-      </table>
-      <a href="/">Главная</a>
-    </div>
 
   </main>
 

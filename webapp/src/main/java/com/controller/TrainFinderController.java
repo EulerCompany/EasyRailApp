@@ -79,10 +79,7 @@ public class TrainFinderController {
             List<Train> trains = trainFinderService.searchForTrains(fcity,lcity, date);
             if(trains != null) {
                 //TODO display trains
-                for (Train t: trains) {
-                    System.out.println(t.getTrainName());
-                }
-                model.addAttribute("trains", trains);
+
                 return trains;
 
             }
